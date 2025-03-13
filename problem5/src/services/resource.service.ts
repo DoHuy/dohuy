@@ -32,8 +32,10 @@ export class ResourceService implements IResourceService {
             data = await this.resourceRepository.find({
                 where: { name: queryFilter.name },
             })
+        } else {
+            data = await this.resourceRepository.find()
         }
-        data = await this.resourceRepository.find()
+        
 
         return data.reduce((acc: ResourceResponce[], resource: Resource) => {
             acc.push({
